@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YVS Entertainment - Talent Management</title>
+  
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #eee;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sleek-font {
+  font-family: 'Poppins', sans-serif; /* or use another modern, clean font */
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+    .light-mode {
+      background-color: #f5f5f5;
+      color: #121212;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: #111;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    .light-mode header {
+      background: #ddd;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: #00ffd1;
+      user-select: none;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+   
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #00ffd1;
+    }
+
+    .cta-btn {
+      background: #00ffd1;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s;
+      color: #121212;
+      font-size: 1rem;
+    }
+    .cta-btn:hover {
+      background: #00c9aa;
+    }
+
+    /* Dark Mode Toggle */
+    .toggle-switch {
+      cursor: pointer;
+      user-select: none;
+      color: #00ffd1;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 2px solid #00ffd1;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .toggle-switch:hover {
+      background: #00ffd1;
+      color: #121212;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #000814, #001d3d);
+      padding: 0 2rem;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      background: linear-gradient(to right, #00ffd1, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      user-select: none;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #ccc;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Section general styling */
+    section {
+      padding: 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      color: #00ffd1;
+      user-select: none;
+    }
+
+    /* About Us */
+    #about p {
+      font-size: 1.1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.6;
+      text-align: center;
+      color: #ddd;
+    }
+    #about-icons {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 2rem;
+      color: #00ffd1;
+    }
+    #about-icons div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+      gap: 0.5rem;
+    }
+    #about-icons div svg {
+      width: 40px;
+      height: 40px;
+      stroke-width: 1.5;
+    }
+
+    /* Talent Grid */
+    #talent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .talent-card {
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,255,209,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .talent-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,255,209,0.3);
+    }
+    .talent-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #333;
+      margin: 0 auto 1rem auto;
+      object-fit: cover;
+      user-select: none;
+      filter: grayscale(40%);
+      transition: filter 0.3s;
+    }
+    .talent-card:hover .talent-photo {
+      filter: grayscale(0%);
+    }
+    .talent-name {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #00ffd1;
+    }
+    .talent-role {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    /* Services */
+    #services-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 1rem;
+    }
+    .service-card {
+      background: #1e1e1e;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      max-width: 250px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,255,209,0.1);
+      transition: background 0.3s;
+    }
+    .service-card:hover {
+      background: #00ffd1;
+      color: #121212;
+    }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: inherit;
+    }
+    .service-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-desc {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* Contact / Apply Form */
+    #contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,255,209,0.15);
+    }
+    #contact-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #00ffd1;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: #eee;
+      font-size: 1rem;
+      resize: vertical;
+      transition: background 0.3s;
+    }
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      outline: none;
+      background: #00ffd1;
+      color: #121212;
+    }
+    #contact-form button {
+      background: #00ffd1;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 25px;
+      font-weight: 700;
+      color: #121212;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    #contact-form button:hover {
+      background: #00c9aa;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      padding: 1.5rem 3rem;
+      text-align: center;
+      color: #555;
+      font-size: 0.9rem;
+      border-top: 1px solid #00ffd1;
+      user-select: none;
+    }
+    footer strong {
+      color: #00ffd1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      nav {
+        gap: 1.2rem;
+      }
+      section {
+        padding: 2rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo sleek-font" aria-label="YVS Entertainment Logo">
+  Y V S Entertainment
+</div>
+
+    <nav>
+      <a href="#about" tabindex="0">About Us</a>
+      <a href="#talent" tabindex="0">Talent</a>
+      <a href="#services" tabindex="0">Services</a>
+      <a href="#contact" tabindex="0">Careers</a>
+    </nav>
+    <div class="toggle-switch" id="darkModeToggle" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle Dark Mode">
+      Dark Mode
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" data-aos="fade-up">
+      <h1>YVS Entertainment</h1>
+      <p>Shaping Talent, Creating Legends — Your trusted talent management partner.</p>
+      <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Join Us</button>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" data-aos="fade-right">
+      <h2 class="section-title">About Us</h2>
+      <p>
+        YVS Entertainment is a premier talent management company dedicated to nurturing and representing artists across various fields. We empower talents to unlock their full potential with personalized career strategies, industry insights, and unparalleled support.
+      </p>
+      <div id="about-icons">
+        <div>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span>Trusted Experience</span>
+        </div>
+        <div>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Global Reach</span>
+        </div>
+        <div>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+          <span>24/7 Support</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Talent / Team Profiles -->
+    <section id="talent" data-aos="fade-left">
+      <h2 class="section-title">Our Talent</h2>
+      <div id="talent-grid">
+        <div class="talent-card" tabindex="0">
+          <img class="talent-photo" src="img/image.jpg" alt="Talent Profile: DJT" />
+          <div class="talent-name">Donald J. Trump</div>
+          <div class="talent-role">Singer & Music Composer</div>
+        </div>
+        <div class="talent-card" tabindex="0">
+          <img class="talent-photo" src="img/image (1).jpg" alt="Talent Profile: Putin" />
+          <div class="talent-name">Vlad Putin</div>
+          <div class="talent-role">Model & Influencer</div>
+        </div>
+        <div class="talent-card" tabindex="0">
+          <img class="talent-photo" src="img/image (3).jpg" alt="Talent Profile: Modi" />
+          <div class="talent-name">N. Modi</div>
+          <div class="talent-role">Rock Drummer</div>
+        </div>
+        <div class="talent-card" tabindex="0">
+          <img class="talent-photo" src="img/image (4).jpg" alt="Talent Profile: Shehbaz Shariff" />
+          <div class="talent-name">Shehbaz Not Shariff</div>
+          <div class="talent-role">Some weird Clown</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" data-aos="fade-up">
+      <h2 class="section-title">What We Do</h2>
+      <div id="services-list">
+        <div class="service-card" tabindex="0">
+          <div class="service-icon">🎤</div>
+          <div class="service-title">Artist Representation</div>
+          <div class="service-desc">Personalized career plans & contract negotiations to secure the best deals.</div>
+        </div>
+        <div class="service-card" tabindex="0">
+          <div class="service-icon">📈</div>
+          <div class="service-title">Brand Management</div>
+          <div class="service-desc">Build and maintain a powerful public image for lasting success.</div>
+        </div>
+        <div class="service-card" tabindex="0">
+          <div class="service-icon">🎬</div>
+          <div class="service-title">Event & Show Booking</div>
+          <div class="service-desc">Organize and manage performances, appearances & endorsements worldwide.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career / Apply Form -->
+    <section id="contact" data-aos="fade-up">
+      <h2 class="section-title">Careers & Apply</h2>
+      <form id="contact-form" aria-label="Career Application Form" onsubmit="return handleFormSubmit(event)">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" name="name" required placeholder="Your full name" />
+
+        <label for="email">Email Address</label>
+        <input id="email" type="email" name="email" required placeholder="you@example.com" />
+
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="tel" name="phone" placeholder="+91 98765 43210" />
+
+        <label for="position">Position Applying For</label>
+        <input id="position" type="text" name="position" required placeholder="Actor, Model, Composer..." />
+
+        <label for="message">Tell Us About Yourself</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your experience, skills, and why you'd be a great fit"></textarea>
+
+        <button type="submit">Submit Application</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Submitted by- <strong>Sambhunath Sahoo</strong> , <strong>Omkar Sarangi</strong> , <strong>Globeen Ray</strong> , <strong>YVS Nishchay</strong>| © 2025 YVS Entertainment
+    </p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // Dark Mode toggle
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      toggle.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+      toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    });
+
+    // Keyboard accessible toggle
+    toggle.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+
+    // Form submission handler (dummy)
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your application! We will get back to you soon.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
