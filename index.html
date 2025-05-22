@@ -19,6 +19,10 @@
       background-color: #121212;
       color: #eee;
       transition: background-color 0.3s, color 0.3s;
+      
+  scroll-behavior: smooth;
+
+
     }
 
     .sleek-font {
@@ -46,18 +50,39 @@
     .light-mode header {
       background: #ddd;
     }
-    .logo {
-      font-weight: 900;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      color: #00ffd1;
-      user-select: none;
-      cursor: default;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-   
+
+
+
+
+.logo-modern {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left-aligned; use center if you prefer centered */
+  line-height: 1;
+  user-select: none;
+  cursor: default;
+}
+
+.logo-main {
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 2.6rem;
+  color: #00ffd1;
+  letter-spacing: 2.5px;
+}
+
+.logo-sub {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #ffffffcc;
+  letter-spacing: 1.2px;
+  margin-top: 0.1rem;
+  margin-left: 0.02rem;
+}
+
+
+
+
 
     nav {
       display: flex;
@@ -107,33 +132,103 @@
       color: #121212;
     }
 
-    /* Hero Section */
-    .hero {
-      height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, #000814, #001d3d);
-      padding: 0 2rem;
-    }
-    .hero h1 {
-      font-size: 4rem;
-      background: linear-gradient(to right, #00ffd1, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      user-select: none;
-    }
-    .hero p {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: #ccc;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
-    }
+ .hero {
+  position: relative;
+ 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 2rem;
+  
+  height: 70vh; /* about 30% less height */
+  
+  background-size: cover;
+  background-position: top center; /* keep the top part visible */
+  /* other styles */
+
+
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+   background: url('img/Screenshot_22-5-2025_235113_www.bing.com.jpeg') no-repeat center center / cover; 
+  filter: blur(6px) brightness(0.5);
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  background: linear-gradient(to right, #00ffd1, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  user-select: none;
+  z-index: 1;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #fff;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  z-index: 1;
+}
+
+.cta-btn {
+  background: #00ffd1;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.cta-btn:hover {
+  background: #00cfa0;
+}
+
+.cta-btn {
+  background: #00ffd1;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: fadeInUp 2s ease-out;
+}
+
+.cta-btn:hover {
+  background: #00c3a5;
+  transform: scale(1.05);
+}
+
+/* Optional: Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
     /* Section general styling */
     section {
@@ -180,87 +275,206 @@
       stroke-width: 1.5;
     }
 
-    /* Talent Grid */
-    #talent-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-    }
-    .talent-card {
-      background: #1e1e1e;
-      padding: 1rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 6px 15px rgba(0,255,209,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .talent-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,255,209,0.3);
-    }
-    .talent-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: #333;
-      margin: 0 auto 1rem auto;
-      object-fit: cover;
-      user-select: none;
-      filter: grayscale(40%);
-      transition: filter 0.3s;
-    }
-    .talent-card:hover .talent-photo {
-      filter: grayscale(0%);
-    }
-    .talent-name {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
-      color: #00ffd1;
-    }
-    .talent-role {
-      font-weight: 500;
-      font-size: 1rem;
-      color: #bbb;
-    }
+    #about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.stat {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,255,209,0.1);
+  min-width: 150px;
+}
+.stat h3 {
+  font-size: 2rem;
+  color: #00ffd1;
+  font-weight: 700;
+}
+.stat p {
+  color: #ccc;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
 
-    /* Services */
-    #services-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 1rem;
-    }
-    .service-card {
-      background: #1e1e1e;
-      padding: 1.5rem 2rem;
-      border-radius: 12px;
-      max-width: 250px;
-      text-align: center;
-      box-shadow: 0 6px 15px rgba(0,255,209,0.1);
-      transition: background 0.3s;
-    }
-    .service-card:hover {
-      background: #00ffd1;
-      color: #121212;
-    }
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: inherit;
-    }
-    .service-title {
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .service-desc {
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.4;
-    }
+
+    /* Talent Grid */
+#talent-grid {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: visible;
+}
+
+.talent-card {
+  position: relative;
+  width: 230px;
+  height: 320px;
+  border-radius: 15px;
+  overflow: visible;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+ border: 1px solid rgba(255, 255, 255, 0.2); /* subtle white border */
+  background: #00ffd1;
+  transition: box-shadow 0.3s ease;
+  /* padding: 15px;  <-- REMOVE THIS */
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
+.talent-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.talent-card:hover .talent-card-inner,
+.talent-card:focus .talent-card-inner {
+  transform: scale(1.05);
+  outline: none;
+  z-index: 10;
+}
+
+.talent-card:hover,
+.talent-card:focus {
+  box-shadow:
+    0 8px 24px rgba(0, 255, 255, 0.6),
+    0 0 0 3px rgba(0, 255, 255, 0.2);
+  z-index: 10;
+  border-color: #0ff; /* optional highlight on hover */
+}
+
+
+.talent-photo {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.talent-card:hover .talent-photo,
+.talent-card:focus .talent-photo {
+  filter: blur(4px) brightness(0.7);
+  transform: scale(1.1);
+}
+
+.talent-info {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: left;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  padding: 15px;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease;
+}
+
+.talent-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.talent-role {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.talent-details {
+  font-size: 0.9rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.talent-card:hover .talent-details,
+.talent-card:focus .talent-details {
+  opacity: 1;
+  max-height: 100px;
+}
+
+
+
+
+/* Services */
+#services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.service-card {
+  background: #1e1e1e;
+  padding: 1.7rem 2rem;
+  border-radius: 16px;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 255, 209, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-card:hover {
+  background: #00ffd1;
+  color: #121212;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 255, 209, 0.3);
+}
+
+.service-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #00ffd1;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  color: #121212;
+}
+
+.service-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-desc {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.service-card:hover .service-desc {
+  color: #121212;
+}
+
 
     /* Contact / Apply Form */
     #contact-form {
@@ -312,18 +526,38 @@
     }
 
     /* Footer */
-    footer {
-      background: #111;
-      padding: 1.5rem 3rem;
-      text-align: center;
-      color: #555;
-      font-size: 0.9rem;
-      border-top: 1px solid #00ffd1;
-      user-select: none;
-    }
-    footer strong {
-      color: #00ffd1;
-    }
+    /* Footer */
+footer {
+  background: #111;
+  padding: 2rem 3rem;
+  text-align: center;
+  color: #bbb;
+  font-size: 0.95rem;
+  border-top: 2px solid #00ffd1;
+  box-shadow: inset 0 1px 0 #222;
+  user-select: none;
+}
+
+footer strong {
+  color: #00ffd1;
+}
+
+.footer-contact {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.footer-contact a {
+  color: #00ffd1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #09b293;
+}
+
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -346,11 +580,20 @@
     }
   </style>
 </head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
+
+
 <body>
   <header>
-    <div class="logo sleek-font" aria-label="YVS Entertainment Logo">
-  Y V S Entertainment
+  <div class="logo-modern" aria-label="YVS Entertainment Logo">
+  <span class="logo-main">YVS</span><span class="logo-sub">ENTERTAINMENT</span>
+  
 </div>
+
+
+
 
     <nav>
       <a href="#about" tabindex="0">About Us</a>
@@ -374,8 +617,27 @@
     <section id="about" data-aos="fade-right">
       <h2 class="section-title">About Us</h2>
       <p>
-        YVS Entertainment is a premier talent management company dedicated to nurturing and representing artists across various fields. We empower talents to unlock their full potential with personalized career strategies, industry insights, and unparalleled support.
-      </p>
+  Founded with the vision to bridge the gap between raw talent and global opportunity, <strong>YVS Entertainment</strong> is more than just a talent management firm — we’re a family of dreamers, doers, and disruptors. We pride ourselves on curating personalized career journeys that reflect the uniqueness of every artist. From backstage coaching to international exposure, we empower talent at every step.
+</p>
+<p>
+  With a team of seasoned professionals, a robust global network, and a deep understanding of media dynamics, we ensure our talents don't just succeed — they shine. Whether you're a rising star or a seasoned artist, YVS Entertainment offers the platform, guidance, and community to help you thrive.
+</p>
+<div id="about-stats" data-aos="fade-up">
+  <div class="stat">
+    <h3 class="count" data-target="120">0</h3>
+    <p>Talents Managed</p>
+  </div>
+  <div class="stat">
+    <h3 class="count" data-target="35">0</h3>
+    <p>Global Events</p>
+  </div>
+  <div class="stat">
+    <h3 class="count" data-target="15">0</h3>
+    <p>Years Experience</p>
+  </div>
+</div>
+
+
       <div id="about-icons">
         <div>
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -392,54 +654,98 @@
       </div>
     </section>
 
-    <!-- Talent / Team Profiles -->
-    <section id="talent" data-aos="fade-left">
-      <h2 class="section-title">Our Talent</h2>
-      <div id="talent-grid">
-        <div class="talent-card" tabindex="0">
-          <img class="talent-photo" src="img/image.jpg" alt="Talent Profile: DJT" />
+  <!-- Talent / Team Profiles -->
+<section id="talent" data-aos="fade-left">
+  <h2 class="section-title">Our Star Talents</h2>
+  <div id="talent-grid">
+    <div class="talent-card" tabindex="0">
+      <div class="talent-card-inner">
+        <img class="talent-photo" src="img/image.jpg" alt="Talent Profile: DJT" />
+        <div class="talent-info">
           <div class="talent-name">Donald J. Trump</div>
           <div class="talent-role">Singer & Music Composer</div>
+          <div class="talent-details">Experienced singer and music composer with over 10 years in the industry.</div>
         </div>
-        <div class="talent-card" tabindex="0">
-          <img class="talent-photo" src="img/image (1).jpg" alt="Talent Profile: Putin" />
+      </div>
+    </div>
+    <div class="talent-card" tabindex="0">
+      <div class="talent-card-inner">
+        <img class="talent-photo" src="img/image (1).jpg" alt="Talent Profile: Putin" />
+        <div class="talent-info">
           <div class="talent-name">Vlad Putin</div>
           <div class="talent-role">Model & Influencer</div>
+          <div class="talent-details">Popular model and social media influencer with a global fanbase.</div>
         </div>
-        <div class="talent-card" tabindex="0">
-          <img class="talent-photo" src="img/image (3).jpg" alt="Talent Profile: Modi" />
+      </div>
+    </div>
+    <div class="talent-card" tabindex="0">
+      <div class="talent-card-inner">
+        <img class="talent-photo" src="img/image (3).jpg" alt="Talent Profile: Modi" />
+        <div class="talent-info">
           <div class="talent-name">N. Modi</div>
           <div class="talent-role">Rock Drummer</div>
+          <div class="talent-details">Dynamic rock drummer known for high-energy performances.</div>
         </div>
-        <div class="talent-card" tabindex="0">
-          <img class="talent-photo" src="img/image (4).jpg" alt="Talent Profile: Shehbaz Shariff" />
+      </div>
+    </div>
+    <div class="talent-card" tabindex="0">
+      <div class="talent-card-inner">
+        <img class="talent-photo" src="img/image (4).jpg" alt="Talent Profile: Shehbaz Shariff" />
+        <div class="talent-info">
           <div class="talent-name">Shehbaz Not Shariff</div>
           <div class="talent-role">Some weird Clown</div>
+          <div class="talent-details">A unique performer with an eccentric style that captivates audiences.</div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <!-- Services -->
-    <section id="services" data-aos="fade-up">
-      <h2 class="section-title">What We Do</h2>
-      <div id="services-list">
-        <div class="service-card" tabindex="0">
-          <div class="service-icon">🎤</div>
-          <div class="service-title">Artist Representation</div>
-          <div class="service-desc">Personalized career plans & contract negotiations to secure the best deals.</div>
-        </div>
-        <div class="service-card" tabindex="0">
-          <div class="service-icon">📈</div>
-          <div class="service-title">Brand Management</div>
-          <div class="service-desc">Build and maintain a powerful public image for lasting success.</div>
-        </div>
-        <div class="service-card" tabindex="0">
-          <div class="service-icon">🎬</div>
-          <div class="service-title">Event & Show Booking</div>
-          <div class="service-desc">Organize and manage performances, appearances & endorsements worldwide.</div>
-        </div>
-      </div>
-    </section>
+<section id="services" data-aos="fade-up">
+  <h2 class="section-title">What We Do</h2>
+  <div id="services-list">
+    
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">🎤</div>
+      <div class="service-title">Artist Representation</div>
+      <div class="service-desc">Personalized career strategies and deal negotiations for long-term success.</div>
+    </div>
+
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">📈</div>
+      <div class="service-title">Brand Management</div>
+      <div class="service-desc">Shape and maintain a strong, recognizable personal brand across platforms.</div>
+    </div>
+
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Event & Show Booking</div>
+      <div class="service-desc">Plan, schedule, and manage national and international shows and tours.</div>
+    </div>
+
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">💼</div>
+      <div class="service-title">Contract & Legal Advisory</div>
+      <div class="service-desc">Expert legal support to review contracts and protect your creative rights.</div>
+    </div>
+
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">🎥</div>
+      <div class="service-title">Media Production</div>
+      <div class="service-desc">High-quality video, photo, and music production services tailored to your vision.</div>
+    </div>
+
+    <div class="service-card" tabindex="0">
+      <div class="service-icon">🌍</div>
+      <div class="service-title">International Promotion</div>
+      <div class="service-desc">Expand your global reach through strategic promotions and media connections.</div>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- Career / Apply Form -->
     <section id="contact" data-aos="fade-up">
@@ -466,10 +772,19 @@
   </main>
 
   <footer>
+  <div class="footer-content">
     <p>
-      Submitted by- <strong>Sambhunath Sahoo</strong> , <strong>Omkar Sarangi</strong> , <strong>Globeen Ray</strong> , <strong>YVS Nishchay</strong> | © 2025 YVS Entertainment
+      Submitted by <strong>Sambhunath Sahoo</strong>, 
+      <strong>Omkar Sarangi</strong>, 
+      <strong>Globeen Ray</strong>, 
+      <strong>YVS Nishchay</strong> | © 2025 YVS Entertainment
     </p>
-  </footer>
+    <div class="footer-contact">
+      <p>Contact us: <a href="mailto:contact@yvsentertainment.com">contact@yvsentertainment.com</a></p>
+    </div>
+  </div>
+</footer>
+
 
   <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -503,5 +818,28 @@
       e.target.reset();
     }
   </script>
+  <script>
+  const counters = document.querySelectorAll('.count');
+  const speed = 100;
+
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const inc = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + inc);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+</script>
+
 </body>
 </html>
+
+
